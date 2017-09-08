@@ -4,7 +4,6 @@ $(function() {
             var username = $("#su_username").val();
             var password = $("#su_password").val();
             var user = {user:  {username: username, password: password }};
-            console.log(API_BASE);
             var signup = $.ajax({
                type: "POST", 
                url: WorkoutLog.API_BASE + "user", 
