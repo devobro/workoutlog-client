@@ -3,7 +3,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
 var javascriptFiles = [
-	'./app.js'
+	'./app.js',
 	'./workouts/define.js',
 	'./workouts/log.js',
 	'./user/auth.js'
