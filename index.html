@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Workout Log</title>
+  <title>Nutrition Tracker</title>
 
   <!-- Bootstrap -->
   <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,16 +24,16 @@
 
   <ul class="nav nav-tabs">
     <li><a href="#home" id="loginout" class="disabled" data-toggle="tab">Login</a></li>
-    <li><a href="#define" class="disabled" data-toggle="tab">Define</a></li>
-    <li><a href="#log" class="disabled" data-toggle="tab">Log</a></li>
-    <li><a href="#history" class="disabled" data-toggle="tab">View History</a></li>
+    <li><a href="#define" class="disabled" data-toggle="tab">Pre-set Meals</a></li>
+    <li><a href="#log" class="disabled" data-toggle="tab">Meal Information</a></li>
+    <li><a href="#history" class="disabled" data-toggle="tab">View Meal History</a></li>
     <a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
   </ul>
 
   <div class="container">
     <div class="tab-content">
       <div class="tab-pane active" id="home">
-        <h2>Workout Log</h2>
+        <h2>Nutrition Tracker</h2>
         <div id="forLogin">
           <button data-toggle="modal" data-target="#login-modal" class="btn btn-primary">Login</button>
           <button data-toggle="modal" data-target="#signup-modal" class="btn btn-primary">Sign Up</button>
@@ -45,47 +45,48 @@
 
       <!-- DEFINE -->
       <div class="tab-pane fade" id="define">
-        <h2>Define</h2>
-          <label for="def-description">Description</label>
+        <h2>Meal Pre-set</h2>
+          <label for="def-description">Create a Pre-set Meal</label>
           <textarea class="form-control" id="def-description" rows="3" ></textarea>
-          <label for="def-logtype">Log work by</label>
+          <label for="def-logtype">Meal Category</label>
           <select class="form-control" id="def-logtype">
-            <option>Time</option>
-            <option>Weight</option>
-            <option>Reps</option>
+            <option id="breakfastOption">Breakfast</option>
+            <option id="lunchOption">Lunch</option>
+            <option id="dinnerOption">Dinner</option>
           </select>
-          <button id="def-save" class="btn btn-primary">Save</button>
+          <button id="def-save" class="btn btn-primary">Go to Enter Nutrition Information</button>
       </div>
       
       <!-- Log -->
       <div class="tab-pane fade" id="log">
-        <h2>log!</h2>
+        <h2>Enter Nutrition Information</h2>
+        <label>Select Pre-set Meal</label>
+        <select class="form-control" id="log-definition"></select>
         <label>Result</label>
         <input type="text" class="form-control" id="log-result">
-        <label>Workout Select:</label>
-        <select class="form-control" id="log-definition"></select>
-        <label>notes</label>
+        <label>Nutrition Information</label>
         <textarea class="form-control" id="log-description" rows="3"></textarea>
-        <button id="log-save" class="btn btn-primary">Save</button>
+        <button id="log-save" class="btn btn-primary">See it in History</button>
       </div>
 
       <!-- Log Update -->
       <div class="tab-pane fade" id="update-log">
-        <h2>Log Update</h2>
+        <h2>Update Nutrition Information</h2>
+        <label>Re-Select Pre-set Meal</label>
+        <select class="form-control" id="update-definition"></select>
         <label>Result</label>
         <input type="hidden" class="form-control" id="update-id">
         <input type="text" class="form-control" id="update-result">
-        <label>Workout Select:</label>
-        <select class="form-control" id="update-definition"></select>
+        
         <label>notes</label>
         <textarea class="form-control" id="update-description" rows="3"></textarea>
         <hr>
-        <button id="log-update" class="btn btn-primary">Save</button>
+        <button id="log-update" class="btn btn-primary">Go back to History</button>
       </div>
 
       <!-- History -->
       <div class="tab-pane fade" id="history">
-        <h2>History</h2>
+        <h2>Meal History</h2>
         <ul class="list-group" id="history-list">
         </ul>
       </div>
