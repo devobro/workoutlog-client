@@ -1,0 +1,28 @@
+html,
+body{
+	height: 100%;
+}
+
+#pillnav{
+	height: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+}
+
+#title{
+	text-align: center;
+}
+/*#forLogout{
+	padding-top: 20%;
+}*/
+/*.container{
+	height: 60%;
+	width: 30%;
+}
+*/
+/*.tab-content{
+	height: 500px;
+	width: 500px;
+}*/

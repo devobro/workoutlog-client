@@ -22,12 +22,14 @@ $(function() {
                }
                $("#signup-modal").modal("hide");
                $(".disabled").removeClass("disabled");
-               $("#loginout").text("Logout");
+               $("#pillnav").removeAttr("style");
+               $("#recordWhat").removeAttr("style");
+               $("#logsign").css({"display": "none"});
+               $("#forLogout").removeAttr("style");
                // console.log("Great job signing up!");
-               // go to define tab
-               $('.nav-tabs a[href="#define"]').tab('show');
                $("#su_username").val("");
                $("#su_password").val("");
+               $('a[href="#home"]').tab('show');
 
             }).fail(function() {
 
@@ -55,11 +57,13 @@ $(function() {
    			}	
    			$("#login-modal").modal("hide");
    			$(".disabled").removeClass("disabled");
-   			$("#loginout").text("Logout");
             $("#li_username").val("");
             $("#li_password").val("");
-
-            $('a[href="#define"]').tab('show');
+            $("#pillnav").removeAttr("style");
+            $("#recordWhat").removeAttr("style");
+            $("#logsign").css({"display": "none"});
+            $("#forLogout").removeAttr("style");
+            $('a[href="#home"]').tab('show');
             
 
    		}).fail(function() {
@@ -70,7 +74,6 @@ $(function() {
       loginout: function() {
          if (window.localStorage.getItem("sessionToken")) {
             window.localStorage.removeItem("sessionToken");
-            $("#loginout").text("Login");
          }
       }
    });
@@ -78,11 +81,8 @@ $(function() {
    // bind events
    $("#login").on("click", WorkoutLog.login);
    $("#signup").on("click", WorkoutLog.signup);
-   $("#loginout").on("click", WorkoutLog.loginout);
+   $("#forLogout").on("click", WorkoutLog.loginout);
 
-   if (window.localStorage.getItem("sessionToken")) {
-      $("#loginout").text("Logout");
-   }
 
 });
 

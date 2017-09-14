@@ -11,6 +11,9 @@
   <!-- Bootstrap -->
   <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Personal CSS -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -20,39 +23,56 @@
 </head>
 
 <body>
-
-
+  <div id="title">
+    <h2>Nutrition Tracker</h2>
+    <hr>
+    <h3 id="recordWhat" style="display:none;">Record what you just ate!</h3>
+    <a href="#home" type="button" class="btn btn-primary" data-toggle="tab" id="homeButton" data-target="#home" style="display:none;">Home</a>
+  </div>
+<!-- 
   <ul class="nav nav-tabs">
-    <li><a href="#home" id="loginout" class="disabled" data-toggle="tab">Login</a></li>
+    <li><a href="#logsign" id="loginout" class="disabled" data-toggle="tab">Login</a></li>
     <li><a href="#define" class="disabled" data-toggle="tab">Pre-set Meals</a></li>
-    <li><a href="#log" class="disabled" data-toggle="tab">Meal Information</a></li>
+    <li><a href="#log" class="disabled" data-toggle="tab">Record New Meal</a></li>
     <li><a href="#history" class="disabled" data-toggle="tab">View Meal History</a></li>
     <a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
   </ul>
-
-  <div class="container">
+ -->
+  <div class="container" id="pillnav" style="display:none;"> <!-- Added -->
+    <ul class="nav nav-pills nav-stacked"> <!-- Added -->
+      <div id="home" style="display:none;"></div> <!-- Added -->
+      <li><a href="#log"  class="btn btn-primary" data-toggle="tab">Click to record a New Food.</a></li> <!-- Added -->
+      <li><a href="#define"  class="btn btn-primary" data-toggle="tab">Click to Create a Pre-set Food Category.</a></li> <!-- Added -->
+      <li><a href="#history"  class="btn btn-primary" data-toggle="tab">Click to see your Meal History.</a></li>
+      <li><a href="#logsign" type="button" class="btn btn-primary" data-toggle="tab" id="forLogout">Logout</a></li> <!-- Added -->
+      <a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a><!-- Added -->
+    </ul>
+    <!-- <div class="row" id="forLogout" style="display:none;">
+        
+    </div> -->
+    </div>
+  </div>
+  <div class="container" style="text-align:center;">
     <div class="tab-content">
-      <div class="tab-pane active" id="home">
-        <h2>Nutrition Tracker</h2>
+      <div class="tab-pane active" id="logsign">
         <div id="forLogin">
           <button data-toggle="modal" data-target="#login-modal" class="btn btn-primary">Login</button>
           <button data-toggle="modal" data-target="#signup-modal" class="btn btn-primary">Sign Up</button>
-        </div>
-        <div id="forLogout" style="display:none;">
-          <button class="btn btn-primary">Logout</button>
         </div>
       </div>
 
       <!-- DEFINE -->
       <div class="tab-pane fade" id="define">
         <h2>Meal Pre-set</h2>
-          <label for="def-description">Create a Pre-set Meal</label>
-          <textarea class="form-control" id="def-description" rows="3" ></textarea>
-          <label for="def-logtype">Meal Category</label>
+          <label for="def-description">Create a Pre-set Meal Category</label>
+          <textarea class="form-control" id="def-description" rows="3" placeholder="Be generic, add the details later (e.g. Hamburger, Pasta, Salad, etc.), or skip to the Record New Meal tab, to use a previous Pre-set ...."></textarea>
+          <label for="def-logtype">Meal Time-of-Day/Type</label>
           <select class="form-control" id="def-logtype">
             <option id="breakfastOption">Breakfast</option>
             <option id="lunchOption">Lunch</option>
             <option id="dinnerOption">Dinner</option>
+            <option id="snackOption">Snack</option>
+
           </select>
           <button id="def-save" class="btn btn-primary">Go to Enter Nutrition Information</button>
       </div>
@@ -60,13 +80,15 @@
       <!-- Log -->
       <div class="tab-pane fade" id="log">
         <h2>Enter Nutrition Information</h2>
-        <label>Select Pre-set Meal</label>
+        <label>Select Pre-set Meal Category</label>
         <select class="form-control" id="log-definition"></select>
-        <label>Result</label>
-        <input type="text" class="form-control" id="log-result">
+        <label>Details</label>
+        <input type="text" class="form-control" id="log-result" placeholder="What kind? What were its toppings? etc ....">
+        <label>Calories</label>
+        <input type="text" class="form-control" id="log-calorie" placeholder="only numbers ....">
         <label>Nutrition Information</label>
-        <textarea class="form-control" id="log-description" rows="3"></textarea>
-        <button id="log-save" class="btn btn-primary">See it in History</button>
+        <textarea class="form-control" id="log-description" rows="3" placeholder="enter fat, carbs, protein ...."></textarea>
+        <button id="log-save" class="btn btn-primary">Put it in History</button>
       </div>
 
       <!-- Log Update -->
@@ -74,11 +96,13 @@
         <h2>Update Nutrition Information</h2>
         <label>Re-Select Pre-set Meal</label>
         <select class="form-control" id="update-definition"></select>
-        <label>Result</label>
+        <label>Notes</label>
         <input type="hidden" class="form-control" id="update-id">
         <input type="text" class="form-control" id="update-result">
-        
-        <label>notes</label>
+        <label>Calories</label>
+        <input type="hidden" class="form-control" id="update-date">
+        <input type="text" class="form-control" id="update-calorie">
+        <label>Nutrition Information</label>
         <textarea class="form-control" id="update-description" rows="3"></textarea>
         <hr>
         <button id="log-update" class="btn btn-primary">Go back to History</button>
@@ -136,16 +160,18 @@
      </div>
    </div>
  </div>
+ </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <script src="./app.js"></script>
+  <!--   <script src="./app.js"></script>
     <script src="./user/auth.js"></script> 
 
     <script src="./workouts/define.js"></script>
     <script src="./workouts/log.js"></script> -->
+    <!-- Comment out 4 scripts above and uncomment the below one, then gulp, before deploy -->
     <script src="./dist/bundle.js"></script>
 </body>
 

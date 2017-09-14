@@ -6,6 +6,7 @@ $(function(){
 			setDefinitions: function(){
 				var defs = WorkoutLog.definition.userDefinitions;
 				var len = defs.length;
+				console.log(defs);
 				var opts;
 				for (var i = 0; i < len; i++) {
 					opts += "<option value='" + defs[i].id + "'>" + defs[i].description + "</option>";
@@ -18,14 +19,16 @@ $(function(){
 
 			setHistory: function(){
 				var history = WorkoutLog.log.workouts;
+				console.log(history);
 				var len = history.length;
 				var lis = "";
 				for (var i = 0; i < len; i++){
 					//pass the log.id into the button's id attribute
-					lis += "<li class='list-group-item'>" + history[i].def + " - " + history[i].result + " " +
-							"<div class = 'pull-right'>" +
-							"<button id = '" + history[i].id + "' class = 'update'><strong>U</strong></button>" +
-							"<button id = '" + history[i].id + "' class ='remove'><strong>X</strong></button>" +
+					lis += "<li class='list-group-item'>" + history[i].def + " - " + history[i].result + " -- " +
+							history[i].calorie + " -- Nutrition Facts: " + history[i].description +
+							"<div class = 'pull-right'>" + history[i].createdAt.substring(0, 10) + "  " +
+							"<button id = '" + history[i].id + "' class = 'update'><strong>Update</strong></button>" +
+							"<button id = '" + history[i].id + "' class ='remove'><strong>Delete</strong></button>" +
 							"</div></li>";
 				}
 				$("#history-list").children().remove();
@@ -36,6 +39,7 @@ $(function(){
 				var itsLog = {
 					desc: $("#log-description").val(),
 					result: $("#log-result").val(),
+					calorie: $("#log-calorie").val(),//added
 					def: $("#log-definition option:selected").text()
 				};
 				var postData = {log: itsLog};
@@ -48,9 +52,10 @@ $(function(){
 
 				logger.done(function(data){
 					WorkoutLog.log.workouts.push(data);
-					// console.log(data);
+					console.log(data);
 					$("#log-description").val("");
 					$("#log-result").val("");
+					$("#log-calorie").val("");//added
 					$('a[href="#history"]').tab("show");
 				});
 			},
@@ -71,8 +76,11 @@ $(function(){
 
 					$('a[href="#update-log"]').tab("show");
 					$('#update-result').val(data.result);
-					$('#update-description').val(data.description);
-					$('#update-id').val(data.id)
+					$('#update-calorie').val(data.calorie);//added
+					$('#update-description').val(data.description);//changed to desc
+					$('#update-id').val(data.id);
+					$('#update-date').val(data.createdAt);//added
+					console.log(data);
 					});
 
 			},
@@ -81,7 +89,9 @@ $(function(){
 				$("#update").text("Update");
 				var updateLog = {
 					id: $('#update-id').val(),
-					desc: $("#update-description").val(),
+					description: $("#update-description").val(),//changed from desc
+					calorie: $("#update-calorie").val(),//added
+					createdAt: $("#update-date").val(),//added
 					result: $("#update-result").val(),
 					def: $("#update-definition option:selected").text()
 				};
@@ -91,6 +101,7 @@ $(function(){
 					}
 				}
 				WorkoutLog.log.workouts.push(updateLog);
+				console.log(WorkoutLog.log.workouts);
 				var updateLogData = {log: updateLog};
 				var updater = $.ajax({
 					type: "PUT",
@@ -100,10 +111,11 @@ $(function(){
 				});
 
 				updater.done(function(data){
-					// console.log(data);
 					$("#update-description").val("");
 					$("#update-result").val("");
+					$("#update-calorie").val("");//added
 					$('a[href="#history"]').tab("show");
+					console.log(updateLogData);
 				});
 			},
 
