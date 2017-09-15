@@ -23,21 +23,14 @@
 </head>
 
 <body>
+  <div id="background">
   <div id="title">
     <h2>Nutrition Tracker</h2>
     <hr>
     <h3 id="recordWhat" style="display:none;">Record what you just ate!</h3>
     <a href="#home" type="button" class="btn btn-primary" data-toggle="tab" id="homeButton" data-target="#home" style="display:none;">Home</a>
   </div>
-<!-- 
-  <ul class="nav nav-tabs">
-    <li><a href="#logsign" id="loginout" class="disabled" data-toggle="tab">Login</a></li>
-    <li><a href="#define" class="disabled" data-toggle="tab">Pre-set Meals</a></li>
-    <li><a href="#log" class="disabled" data-toggle="tab">Record New Meal</a></li>
-    <li><a href="#history" class="disabled" data-toggle="tab">View Meal History</a></li>
-    <a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
-  </ul>
- -->
+
   <div class="container" id="pillnav" style="display:none;"> <!-- Added -->
     <ul class="nav nav-pills nav-stacked"> <!-- Added -->
       <div id="home" style="display:none;"></div> <!-- Added -->
@@ -47,11 +40,8 @@
       <li><a href="#logsign" type="button" class="btn btn-primary" data-toggle="tab" id="forLogout">Logout</a></li> <!-- Added -->
       <a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a><!-- Added -->
     </ul>
-    <!-- <div class="row" id="forLogout" style="display:none;">
-        
-    </div> -->
     </div>
-  </div>
+  <!-- </div> -->
   <div class="container" style="text-align:center;">
     <div class="tab-content">
       <div class="tab-pane active" id="logsign">
@@ -161,12 +151,12 @@
    </div>
  </div>
  </div>
-
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!--   <script src="./app.js"></script>
+<!--     <script src="./app.js"></script>
     <script src="./user/auth.js"></script> 
 
     <script src="./workouts/define.js"></script>

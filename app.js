@@ -1,7 +1,9 @@
 $(function(){
 
 var WorkoutLog = (function($, undefined) {
+      // Comment this to run locally
       var API_BASE =  "https://workoutlog-server-devon.herokuapp.com/api/";
+      // Comment this to run on heroku
       // var API_BASE = "http://localhost:3000/api/"
       var userDefinitions = [];
 

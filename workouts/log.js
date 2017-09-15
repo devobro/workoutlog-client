@@ -25,7 +25,7 @@ $(function(){
 				for (var i = 0; i < len; i++){
 					//pass the log.id into the button's id attribute
 					lis += "<li class='list-group-item'>" + history[i].def + " - " + history[i].result + " -- " +
-							history[i].calorie + " -- Nutrition Facts: " + history[i].description +
+							history[i].calorie + " kcal" + " -- Nutrition Facts: " + history[i].description +
 							"<div class = 'pull-right'>" + history[i].createdAt.substring(0, 10) + "  " +
 							"<button id = '" + history[i].id + "' class = 'update'><strong>Update</strong></button>" +
 							"<button id = '" + history[i].id + "' class ='remove'><strong>Delete</strong></button>" +

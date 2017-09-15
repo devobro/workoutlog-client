@@ -1,6 +1,7 @@
 html,
 body{
 	height: 100%;
+	background-color: #f2f2f2;
 }
 
 #pillnav{
@@ -13,16 +14,19 @@ body{
 
 #title{
 	text-align: center;
+	margin-top: 7%;
 }
-/*#forLogout{
-	padding-top: 20%;
-}*/
-/*.container{
-	height: 60%;
-	width: 30%;
+
+#login-modal{
+	margin-top: 10%;
 }
-*/
-/*.tab-content{
-	height: 500px;
-	width: 500px;
-}*/
+
+#signup-modal{
+	margin-top: 10%;
+}
+
+#recordWhat{
+	margin: 1.5%;
+}
+
+
